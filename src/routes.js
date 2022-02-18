@@ -1,16 +1,15 @@
 import { Router } from 'express';
-import { GetController } from './controllers/GetController.js';
-import { PostController } from './controllers/PostController.js';
-import { TransactionsController } from './controllers/TransactionsController.js';
+import { APIController } from './controllers/APIController.js';
 
 const router = Router();
 
-const getController = new GetController;
-const postController = new PostController;
-const transactionsController = new TransactionsController;
+const apiController = new APIController;
 
-router.get("/contas", getController.listAccounts);
-router.post("/contas", postController.createAccount);
-router.put("/contas/:id", transactionsController.updateAccount);
+router.get("/contas", apiController.listAccounts);
+router.post("/contas", apiController.createAccount);
+router.put("/contas/:id", apiController.updateAccount);
+router.delete("/contas/:id", apiController.deleteAccount);
+router.post("/transacoes/depositar", apiController.depositValue);
+router.post("/transacoes/sacar", apiController.withdrawValue);
 
 export { router };
